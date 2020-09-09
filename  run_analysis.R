@@ -3,14 +3,14 @@ fileurl = 'https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20
 if (!file.exists('./UCI HAR Dataset.zip')){
   download.file(fileurl,'./UCI HAR Dataset.zip', mode = 'wb')
   unzip("UCI HAR Dataset.zip", exdir = getwd())
-}
-features <- read.csv('./UCI HAR Dataset/features.txt', header = FALSE, sep = ' ')
+}###downloading file,unzip,convert to csv
+features <- read.csv('./UCI HAR Dataset/features.txt', header = FALSE, sep = ' ')#read csv
 features <- as.character(features[,2])
 
 data.train.x <- read.table('./UCI HAR Dataset/train/X_train.txt')
 data.train.activity <- read.csv('./UCI HAR Dataset/train/y_train.txt', header = FALSE, sep = ' ')
 data.train.subject <- read.csv('./UCI HAR Dataset/train/subject_train.txt',header = FALSE, sep = ' ')
-
+###
 data.train <-  data.frame(data.train.subject, data.train.activity, data.train.x)
 names(data.train) <- c(c('subject', 'activity'), features)
 
